@@ -1,0 +1,35 @@
+{
+  "name": "00-js",
+  "version": "0.0.1",
+  "description": "Node.js library for interacting with the 00 API.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nic13Gamer/00-node.git"
+  },
+  "keywords": [
+    "Double Zero",
+    "00",
+    "Double Zero Email API"
+  ],
+  "homepage": "https://www.double-zero.cloud/",
+  "author": "Nicholas",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.8",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.2"
+  }
+}
