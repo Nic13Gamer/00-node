@@ -32,7 +32,7 @@ export class DoubleZero {
   }
 
   async fetchRequest<T>(path: string, options = {}): Promise<T> {
-    const response = await fetch(`${this.params.baseUrl}${path}`, options);
+    const response = await fetch(`${this.params.baseUrl}/api/${path}`, options);
 
     if (!response.ok) {
       throw new DoubleZeroError(`DoubleZero API error: ${response.statusText}`);
@@ -42,7 +42,7 @@ export class DoubleZero {
     return data;
   }
 
-  async post(path: string, payload?: unknown, options: PostOptions = {}) {
+  async post<T>(path: string, payload?: unknown, options: PostOptions = {}) {
     const requestOptions = {
       method: 'POST',
       headers: this.headers,
@@ -50,7 +50,7 @@ export class DoubleZero {
       ...options,
     };
 
-    return await this.fetchRequest(path, requestOptions);
+    return await this.fetchRequest<T>(path, requestOptions);
   }
 
   async get<T>(path: string, options: GetOptions = {}) {
