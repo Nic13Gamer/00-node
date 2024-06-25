@@ -1,4 +1,5 @@
 import { version } from '../package.json';
+import { DoubleZeroError } from './error';
 
 const defaultUserAgent = `00-node:${version}`;
 const userAgent =
@@ -27,5 +28,16 @@ export class DoubleZero {
       'User-Agent': userAgent,
       'Content-Type': 'application/json',
     });
+  }
+
+  async fetchRequest<T>(path: string, options = {}): Promise<T> {
+    const response = await fetch(`${this.params.baseUrl}${path}`, options);
+
+    if (!response.ok) {
+      throw new DoubleZeroError(`DoubleZero API error: ${response.statusText}`);
+    }
+
+    const data = (await response.json()).data;
+    return data;
   }
 }
