@@ -1,4 +1,5 @@
 import { DoubleZero } from '../core';
+import { CreateEmailParams } from './types';
 
 export class Emails {
   constructor(private readonly doublezero: DoubleZero) {}

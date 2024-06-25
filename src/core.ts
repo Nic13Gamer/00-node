@@ -1,4 +1,5 @@
 import { version } from '../package.json';
+import { Emails } from './emails/emails';
 import { DoubleZeroError } from './error';
 import { GetOptions, PatchOptions, PostOptions, PutOptions } from './types';
 
@@ -10,6 +11,8 @@ const userAgent =
 
 export class DoubleZero {
   private readonly headers: Headers;
+
+  readonly emails = new Emails(this);
 
   constructor(readonly params: { baseUrl: string; token?: string }) {
     if (!params.token) {

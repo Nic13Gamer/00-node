@@ -1,4 +1,4 @@
-interface CreateEmailParams {
+export interface CreateEmailParams {
   from: string;
   to: string | string[];
   subject: string;
