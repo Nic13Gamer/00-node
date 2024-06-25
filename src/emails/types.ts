@@ -17,5 +17,6 @@ export interface CreateEmailParams {
   attachments?: {
     filename: string;
     content: string;
+    content_type: string;
   }[];
 }
