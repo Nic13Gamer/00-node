@@ -1,5 +1,6 @@
 import { version } from '../package.json';
 import { DoubleZeroError } from './error';
+import { GetOptions, PatchOptions, PostOptions, PutOptions } from './types';
 
 const defaultUserAgent = `00-node:${version}`;
 const userAgent =
@@ -39,5 +40,58 @@ export class DoubleZero {
 
     const data = (await response.json()).data;
     return data;
+  }
+
+  async post(path: string, payload?: unknown, options: PostOptions = {}) {
+    const requestOptions = {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify(payload),
+      ...options,
+    };
+
+    return await this.fetchRequest(path, requestOptions);
+  }
+
+  async get<T>(path: string, options: GetOptions = {}) {
+    const requestOptions = {
+      method: 'GET',
+      headers: this.headers,
+      ...options,
+    };
+
+    return await this.fetchRequest<T>(path, requestOptions);
+  }
+
+  async put<T>(path: string, payload: any, options: PutOptions = {}) {
+    const requestOptions = {
+      method: 'PUT',
+      headers: this.headers,
+      body: JSON.stringify(payload),
+      ...options,
+    };
+
+    return await this.fetchRequest<T>(path, requestOptions);
+  }
+
+  async patch<T>(path: string, payload: any, options: PatchOptions = {}) {
+    const requestOptions = {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify(payload),
+      ...options,
+    };
+
+    return await this.fetchRequest<T>(path, requestOptions);
+  }
+
+  async delete<T>(path: string, query?: unknown) {
+    const requestOptions = {
+      method: 'DELETE',
+      headers: this.headers,
+      body: JSON.stringify(query),
+    };
+
+    return await this.fetchRequest<T>(path, requestOptions);
   }
 }
