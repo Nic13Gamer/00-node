@@ -42,6 +42,11 @@ export class DoubleZero {
     }
 
     const data = (await response.json()).data;
+
+    if (data.error) {
+      throw new DoubleZeroError(data.error);
+    }
+
     return data;
   }
 
