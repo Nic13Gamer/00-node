@@ -12,7 +12,7 @@ export interface CreateEmailParams {
 
   headers?: Record<string, string>;
 
-  provider_options: object;
+  provider_options?: object;
 
   attachments?: {
     filename: string;
