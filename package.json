@@ -13,6 +13,7 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
+    "release": "pnpm run build && changeset publish",
     "lint": "tsc"
   },
   "repository": {
@@ -28,6 +29,7 @@
   "author": "Nicholas",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.27.7",
     "@types/node": "^20.14.8",
     "tsup": "^8.1.0",
     "typescript": "^5.5.2"
