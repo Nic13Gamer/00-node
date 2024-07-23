@@ -29,6 +29,7 @@ type Recipient =
   | {
       type: 'email';
       email: string;
+      [key: string]: any;
     };
 
 export interface CreateBroadcastParams {
