@@ -12,7 +12,7 @@ export class Emails {
 
   async broadcast(params: CreateBroadcastParams): Promise<{ id: string }> {
     const data = await this.doublezero.post<{ id: string }>(
-      '/emails/broadcasts/',
+      '/emails/broadcasts',
       params
     );
 
