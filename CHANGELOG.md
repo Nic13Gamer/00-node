@@ -1,5 +1,11 @@
 # 00-js
 
+## 0.3.0
+
+### Minor Changes
+
+- 603e8ac: Get email & messages
+
 ## 0.2.0
 
 ### Minor Changes
