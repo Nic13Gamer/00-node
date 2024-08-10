@@ -52,3 +52,25 @@ export interface CreateBroadcastParams {
     content_type: string;
   }[];
 }
+
+export interface Email {
+  id: string;
+  from: string;
+  subject: string;
+  to: string[];
+  cc?: string[] | null;
+  bcc?: string[] | null;
+  reply_to?: string | null;
+  body: string;
+  text: string;
+}
+
+export interface EmailMessage {
+  id: string;
+  status: string;
+  recipient: {
+    id: string;
+    destination: string;
+    status: string;
+  };
+}
