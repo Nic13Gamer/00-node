@@ -2,6 +2,7 @@ import { version } from '../package.json';
 import { Contacts } from './contacts/contacts';
 import { Emails } from './emails/emails';
 import { DoubleZeroError } from './error';
+import { Lists } from './lists/lists';
 import { GetOptions, PatchOptions, PostOptions, PutOptions } from './types';
 
 const defaultUserAgent = `00-node:${version}`;
@@ -15,6 +16,7 @@ export class DoubleZero {
 
   readonly emails = new Emails(this);
   readonly contacts = new Contacts(this);
+  readonly lists = new Lists(this);
 
   constructor(readonly params: { baseUrl: string; token?: string }) {
     if (!params.token) {
