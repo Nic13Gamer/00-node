@@ -45,6 +45,10 @@ export class DoubleZero {
       throw new DoubleZeroError(`DoubleZero API error: ${response.statusText}`);
     }
 
+    if (response.headers.get('content-length') === '0') {
+      return {} as T;
+    }
+
     const data = (await response.json()).data;
 
     if (data.error) {
