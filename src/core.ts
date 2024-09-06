@@ -1,4 +1,5 @@
 import { version } from '../package.json';
+import { Contacts } from './contacts/contacts';
 import { Emails } from './emails/emails';
 import { DoubleZeroError } from './error';
 import { GetOptions, PatchOptions, PostOptions, PutOptions } from './types';
@@ -13,6 +14,7 @@ export class DoubleZero {
   private readonly headers: Headers;
 
   readonly emails = new Emails(this);
+  readonly contacts = new Contacts(this);
 
   constructor(readonly params: { baseUrl: string; token?: string }) {
     if (!params.token) {
@@ -35,7 +37,7 @@ export class DoubleZero {
   }
 
   async fetchRequest<T>(path: string, options = {}): Promise<T> {
-    const response = await fetch(`${this.params.baseUrl}/api/${path}`, options);
+    const response = await fetch(`${this.params.baseUrl}/api${path}`, options);
 
     if (!response.ok) {
       throw new DoubleZeroError(`DoubleZero API error: ${response.statusText}`);
