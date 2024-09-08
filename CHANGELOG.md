@@ -1,5 +1,11 @@
 # 00-js
 
+## 0.4.0
+
+### Minor Changes
+
+- 165ef37: Contacts & lists
+
 ## 0.3.0
 
 ### Minor Changes
