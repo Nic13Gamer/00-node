@@ -1,5 +1,11 @@
 # 00-js
 
+## 0.4.1
+
+### Patch Changes
+
+- f3866b9: Fix responses
+
 ## 0.4.0
 
 ### Minor Changes
