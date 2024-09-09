@@ -5,24 +5,27 @@ import { AddContactParams, List, ListContact, UpdateListParams } from './types';
 export class Lists {
   constructor(private readonly doublezero: DoubleZero) {}
 
-  async list(): Promise<{ data: List[]; meta?: ListMeta }> {
-    const data = await this.doublezero.get<List[]>('/lists');
+  async list(): Promise<{ data: List[]; meta: ListMeta }> {
+    const data = await this.doublezero.get<{ data: List[]; meta: ListMeta }>(
+      '/lists'
+    );
 
-    return {
-      data: data,
-    };
+    return data;
   }
 
   async get(id: string): Promise<List> {
-    const data = await this.doublezero.get<List>(`/lists/${id}`);
+    const data = await this.doublezero.get<{ data: List }>(`/lists/${id}`);
 
-    return data;
+    return data.data;
   }
 
   async update(id: string, params: UpdateListParams): Promise<List> {
-    const data = await this.doublezero.patch<List>(`/lists/${id}`, params);
+    const data = await this.doublezero.patch<{ data: List }>(
+      `/lists/${id}`,
+      params
+    );
 
-    return data;
+    return data.data;
   }
 
   async delete(id: string): Promise<void> {
@@ -33,12 +36,12 @@ export class Lists {
     listId: string,
     params: AddContactParams
   ): Promise<ListContact> {
-    const data = await this.doublezero.post<ListContact>(
+    const data = await this.doublezero.post<{ data: ListContact }>(
       `/lists/${listId}/contacts`,
       params
     );
 
-    return data;
+    return data.data;
   }
 
   async removeContact(

@@ -49,7 +49,7 @@ export class DoubleZero {
       return {} as T;
     }
 
-    const data = (await response.json()).data;
+    const data = await response.json();
 
     if (data.error) {
       throw new DoubleZeroError(data.error);

@@ -5,27 +5,29 @@ import { Contact, UpdateContactParams } from './types';
 export class Contacts {
   constructor(private readonly doublezero: DoubleZero) {}
 
-  async list(): Promise<{ data: Contact[]; meta?: ListMeta }> {
-    const data = await this.doublezero.get<Contact[]>('/contacts');
-
-    return {
-      data: data,
-    };
-  }
-
-  async get(id: string): Promise<Contact> {
-    const data = await this.doublezero.get<Contact>(`/contacts/${id}`);
+  async list(): Promise<{ data: Contact[]; meta: ListMeta }> {
+    const data = await this.doublezero.get<{ data: Contact[]; meta: ListMeta }>(
+      '/contacts'
+    );
 
     return data;
   }
 
+  async get(id: string): Promise<Contact> {
+    const data = await this.doublezero.get<{ data: Contact }>(
+      `/contacts/${id}`
+    );
+
+    return data.data;
+  }
+
   async update(id: string, params: UpdateContactParams): Promise<Contact> {
-    const data = await this.doublezero.patch<Contact>(
+    const data = await this.doublezero.patch<{ data: Contact }>(
       `/contacts/${id}`,
       params
     );
 
-    return data;
+    return data.data;
   }
 
   async delete(id: string): Promise<void> {

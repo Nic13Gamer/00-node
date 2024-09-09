@@ -10,18 +10,21 @@ export class Emails {
   constructor(private readonly doublezero: DoubleZero) {}
 
   async send(params: CreateEmailParams): Promise<{ id: string }> {
-    const data = await this.doublezero.post<{ id: string }>('/emails', params);
+    const data = await this.doublezero.post<{ data: { id: string } }>(
+      '/emails',
+      params
+    );
 
-    return data;
+    return data.data;
   }
 
   async broadcast(params: CreateBroadcastParams): Promise<{ id: string }> {
-    const data = await this.doublezero.post<{ id: string }>(
+    const data = await this.doublezero.post<{ data: { id: string } }>(
       '/emails/broadcasts',
       params
     );
 
-    return data;
+    return data.data;
   }
 
   async get(id: string): Promise<Email> {
